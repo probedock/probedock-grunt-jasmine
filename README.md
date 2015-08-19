@@ -6,7 +6,7 @@
 [![Dependency Status](https://gemnasium.com/probedock/probedock-grunt-jasmine.svg)](https://gemnasium.com/probedock/probedock-grunt-jasmine)
 [![License](https://img.shields.io/github/license/probedock/probedock-grunt-jasmine.svg)](LICENSE.txt)
 
-This reporter can be used with Jasmine-based Grunt plugins like [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner) and [grunt-contrib-jasmine](https://github.com/gruntjs/grunt-contrib-jasmine). Only Jasmine 1.3 is supported at the moment.
+This reporter can be used with Jasmine-based Grunt plugins like [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner). Only Jasmine 1.3 is supported at the moment.
 
 * [Requirements](#requirements)
 * [Installation](#installation)
