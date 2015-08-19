@@ -1,7 +1,7 @@
 {
   "name": "probedock-grunt-jasmine",
   "description": "Jasmine probe for Probe Dock.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/probedock/probedock-grunt-jasmine",
   "author": {
     "name": "Simon Oulevay (Alpha Hydrae)",
@@ -19,7 +19,7 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "probedock-grunt": "^0.3.0"
+    "probedock-grunt": "^0.4.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

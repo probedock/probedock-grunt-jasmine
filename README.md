@@ -98,11 +98,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     // Probe Dock grunt task configuration
-    probedockGruntSetup: {
+    probedockSetup: {
       all: {}
     },
 
-    probedockGruntPublish: {
+    probedockPublish: {
       all: {}
     },
 
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('probedock-grunt');
 
   // add the Probe Dock grunt tasks around your task
-  grunt.registerTask('test-protractor', ['probedockGruntSetup', 'protractor', 'probedockGruntPublish']);
+  grunt.registerTask('test-protractor', ['probedockSetup', 'protractor', 'probedockPublish']);
 }
 ```
 
