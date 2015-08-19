@@ -8,6 +8,8 @@
 
 This reporter can be used with Jasmine-based Grunt plugins like [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner). Only Jasmine 1.3 is supported at the moment.
 
+**Remark:** The Jasmine-based grunt plugins must let you the possibility to add a custom reporter provided by this probe.
+
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
@@ -38,7 +40,7 @@ This procedure is described here:
 
 * [Probe Setup Procedure](https://github.com/probedock/probedock-probes#setup)
 
-
+### Setup with Protractor
 
 For [Protractor](http://angular.github.io/protractor/), add the reporter to your Protractor configuration:
 
@@ -81,10 +83,7 @@ exports.config = {
 };
 ```
 
-
-
-If you are using [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner),
-you must also add the Probe Dock grunt tasks around your test task.
+Then you also need to add the Probe Dock grunt tasks around your [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner) test task.
 
 For example, in your Gruntfile:
 
