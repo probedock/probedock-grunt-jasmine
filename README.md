@@ -1,27 +1,37 @@
-# rox-client-grunt-jasmine
+# Jasmine (Grunt.js) Probe for Probe Dock
 
-> Jasmine reporter to send test results to [ROX Center](https://github.com/lotaris/rox-center) from Grunt tasks.
+**[Jasmine](http://jasmine.github.io) reporter to publish test results to [Probe Dock](https://github.com/probedock/probedock) with [Grunt.js](http://gruntjs.com).**
 
-[![NPM version](https://badge.fury.io/js/rox-client-grunt-jasmine.svg)](http://badge.fury.io/js/rox-client-grunt-jasmine)
+[![NPM version](https://badge.fury.io/js/probedock-grunt-jasmine.svg)](http://badge.fury.io/js/probedock-grunt-jasmine)
 
 This reporter can be used with Jasmine-based Grunt plugins like [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner) and [grunt-contrib-jasmine](https://github.com/gruntjs/grunt-contrib-jasmine). Only Jasmine 1.3 is supported at the moment.
 
-## Usage
 
-This reporter must be used in conjunction with [rox-client-grunt](https://github.com/lotaris/rox-client-grunt).
 
-Add both as development dependencies:
+<a name="requirements"></a>
+## Requirements
+
+* Node.js 0.10+
+* Jasmine 1.3
+
+
+
+<a name="installation"></a>
+## Installation
+
+Install it as a development dependency:
 
 ```bash
-npm install --save-dev rox-client-grunt
-npm install --save-dev rox-client-grunt-jasmine
+npm install --save-dev probedock-grunt-jasmine
 ```
+
+
 
 If you are using [Protractor](http://angular.github.io/protractor/), add the reporter to your Protractor configuration:
 
 ```js
 // load the reporter module
-var RoxReporter = require('rox-client-grunt-jasmine');
+var ProbeDockReporter = require('probedock-grunt-jasmine');
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -45,12 +55,12 @@ exports.config = {
 
   // add the reporter to the jasmine environment
   onPrepare: function() {
-    jasmine.getEnv().addReporter(new RoxReporter({
+    jasmine.getEnv().addReporter(new ProbeDockReporter({
 
-      // custom rox client configuration
+      // custom Probe Dock configuration
       config: {
         project: {
-          category: 'Protractor - Jasmine'
+          category: 'Protractor'
         }
       }
     }));
@@ -58,8 +68,10 @@ exports.config = {
 };
 ```
 
+
+
 If you are using [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner),
-you must add the ROX grunt tasks around your test task.
+you must add the Probe Dock grunt tasks around your test task.
 For example, in your Gruntfile:
 
 ```js
@@ -67,17 +79,17 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    // rox grunt task configuration
-    roxGruntSetup: {
+    // Probe Dock grunt task configuration
+    probedockGruntSetup: {
       all: {}
     },
 
-    roxGruntPublish: {
+    probedockGruntPublish: {
       all: {}
     },
 
     // your protractor task configuration
-    // (note that the keepAlive option is required to work with the rox tasks)
+    // (note that the keepAlive option is required to use the Probe Dock tasks)
     protractor: {
       options: {
         configFile: 'test/protractor.conf.js',
@@ -88,20 +100,41 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-protractor-runner');
-  grunt.loadNpmTasks('rox-client-grunt');
+  grunt.loadNpmTasks('probedock-grunt');
 
-  // add the rox grunt tasks around your task
-  grunt.registerTask('test-protractor', ['roxGruntSetup', 'protractor', 'roxGruntPublish']);
+  // add the Probe Dock grunt tasks around your task
+  grunt.registerTask('test-protractor', ['probedockGruntSetup', 'protractor', 'probedockGruntPublish']);
 }
 ```
 
-### Requirements
-
-* Node.js 0.10
-* Jasmine 1.3
 
 
+<a name="usage"><a/>
+## Usage
 
+To track a test with a Probe Dock test key, add this annotation to the test name:
+
+```js
+describe("something", function() {
+  it("should work @probedock(abcd)", function() {
+    expect(true).toBe(true);
+  });
+});
+```
+
+You may also define a category, tags and tickets for a test like this:
+
+```js
+describe("something", function() {
+  it("should work @probedock(key=bcde category=Integration tag=user-registration tag=validation ticket=JIRA-1000 ticket=JIRA-1012)", function() {
+    expect(true).not.toBe(false);
+  });
+});
+```
+
+
+
+<a name="contributing"></a>
 ## Contributing
 
 * [Fork](https://help.github.com/articles/fork-a-repo)
@@ -115,5 +148,4 @@ Please add a changelog entry with your name for new features and bug fixes.
 
 ## License
 
-*rox-client-grunt-jasmine* is licensed under the [MIT License](http://opensource.org/licenses/MIT).
-See [LICENSE.txt](LICENSE.txt) for the full text.
+*probedock-grunt-jasmine* is licensed under the [MIT License](http://opensource.org/licenses/MIT).

@@ -1,18 +1,18 @@
 var _ = require('underscore'),
     path = require('path'),
-    rox = require('rox-client-node');
+    probedock = require('probedock-node');
 
-function RoxClientGruntJasmineReporter(options) {
+function ProbeDockGruntJasmineReporter(options) {
   this.options = options || {};
 }
 
-module.exports = RoxClientGruntJasmineReporter;
+module.exports = ProbeDockGruntJasmineReporter;
 
-_.extend(RoxClientGruntJasmineReporter.prototype, {
+_.extend(ProbeDockGruntJasmineReporter.prototype, {
 
   reportRunnerStarting: function() {
-    this.config = rox.client.loadConfig(this.options.config);
-    this.testRun = rox.client.startTestRun(this.config);
+    this.config = probedock.client.loadConfig(this.options.config);
+    this.testRun = probedock.client.startTestRun(this.config);
   },
 
   reportSpecStarting: function(spec) {
@@ -29,7 +29,9 @@ _.extend(RoxClientGruntJasmineReporter.prototype, {
     var name = getFullName(spec),
       passed = results.passed(),
       duration = new Date().getTime() - spec.startTime,
-      options = {};
+      options = {
+        nameParts: getNameParts(spec)
+      };
 
     if (!passed) {
       options.message = buildErrorMessage(results);
@@ -40,8 +42,8 @@ _.extend(RoxClientGruntJasmineReporter.prototype, {
 
   reportRunnerResults: function() {
     this.testRun.end();
-    if (process.env.ROX_GRUNT_TMP) {
-      rox.client.saveTestRun(path.join(process.env.ROX_GRUNT_TMP, 'data.json'), this.testRun, this.config);
+    if (process.env.PROBEDOCK_GRUNT_TMP) {
+      probedock.client.saveTestRun(path.join(process.env.PROBEDOCK_GRUNT_TMP, 'data.json'), this.testRun, this.config);
     }
   }
 });
@@ -54,6 +56,18 @@ function getFullName(spec) {
   }
 
   return fullName + ' ' + spec.description;
+}
+
+function getNameParts(spec) {
+
+  var parts = [ spec.suite.description ];
+  for (var parentSuite = spec.suite.parentSuite; parentSuite; parentSuite = parentSuite.parentSuite) {
+    parts.unshift(parentSuite.description);
+  }
+
+  parts.push(spec.description);
+
+  return parts;
 }
 
 function buildErrorMessage(results) {
