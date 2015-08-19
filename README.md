@@ -10,8 +10,6 @@ This reporter can be used with Jasmine-based Grunt plugins like [grunt-protracto
 
 * [Requirements](#requirements)
 * [Installation](#installation)
-  * [Protractor](#installation-protractor)
-  * [grunt-protractor-runner](#installation-grunt-protractor-runner)
 * [Usage](#usage)
 * [Contributing](#contributing)
 
@@ -28,9 +26,10 @@ This reporter can be used with Jasmine-based Grunt plugins like [grunt-protracto
 <a name="installation"></a>
 ## Installation
 
-Install it as a development dependency:
+Install it as a development dependency along with [probedock-grunt](https://github.com/probedock/probedock-grunt):
 
 ```bash
+npm install --save-dev probedock-grunt
 npm install --save-dev probedock-grunt-jasmine
 ```
 
@@ -41,12 +40,10 @@ This procedure is described here:
 
 
 
-<a name="installation-protractor"></a>
-
-If you are using [Protractor](http://angular.github.io/protractor/), add the reporter to your Protractor configuration:
+For [Protractor](http://angular.github.io/protractor/), add the reporter to your Protractor configuration:
 
 ```js
-// load the reporter module
+// Load the Probe Dock reporter.
 var ProbeDockReporter = require('probedock-grunt-jasmine');
 
 exports.config = {
@@ -62,14 +59,14 @@ exports.config = {
 
   baseUrl: 'http://example.com',
 
-  // the jasmine framework is required
+  // The jasmine framework is required.
   framework: 'jasmine',
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
   },
 
-  // add the reporter to the jasmine environment
+  // Add the Probe Dock reporter to the jasmine environment.
   onPrepare: function() {
     jasmine.getEnv().addReporter(new ProbeDockReporter({
 
@@ -86,10 +83,9 @@ exports.config = {
 
 
 
-<a name="installation-grunt-protractor-runner"></a>
-
 If you are using [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner),
-you must add the Probe Dock grunt tasks around your test task.
+you must also add the Probe Dock grunt tasks around your test task.
+
 For example, in your Gruntfile:
 
 ```js
