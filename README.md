@@ -3,8 +3,17 @@
 **[Jasmine](http://jasmine.github.io) reporter to publish test results to [Probe Dock](https://github.com/probedock/probedock) with [Grunt.js](http://gruntjs.com).**
 
 [![NPM version](https://badge.fury.io/js/probedock-grunt-jasmine.svg)](http://badge.fury.io/js/probedock-grunt-jasmine)
+[![Dependency Status](https://gemnasium.com/probedock/probedock-grunt-jasmine.svg)](https://gemnasium.com/probedock/probedock-grunt-jasmine)
+[![License](https://img.shields.io/github/license/probedock/probedock-grunt-jasmine.svg)](LICENSE.txt)
 
 This reporter can be used with Jasmine-based Grunt plugins like [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner) and [grunt-contrib-jasmine](https://github.com/gruntjs/grunt-contrib-jasmine). Only Jasmine 1.3 is supported at the moment.
+
+* [Requirements](#requirements)
+* [Installation](#installation)
+  * [Protractor](#installation-protractor)
+  * [grunt-protractor-runner](#installation-grunt-protractor-runner)
+* [Usage](#usage)
+* [Contributing](#contributing)
 
 
 
@@ -25,7 +34,14 @@ Install it as a development dependency:
 npm install --save-dev probedock-grunt-jasmine
 ```
 
+If you haven't done so already, set up your Probe Dock configuration file(s).
+This procedure is described here:
 
+* [Probe Setup Procedure](https://github.com/probedock/probedock-probes#setup)
+
+
+
+<a name="installation-protractor"></a>
 
 If you are using [Protractor](http://angular.github.io/protractor/), add the reporter to your Protractor configuration:
 
@@ -69,6 +85,8 @@ exports.config = {
 ```
 
 
+
+<a name="installation-grunt-protractor-runner"></a>
 
 If you are using [grunt-protractor-runner](https://github.com/teerapap/grunt-protractor-runner),
 you must add the Probe Dock grunt tasks around your test task.
